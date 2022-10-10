@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <label>Input Number:</label>
+    <input type='number' id='fnum'><BR>
+    <button onclick='myFunction()'>Click me</button> 
+    <p id='demo'></p>
+    <script>function myFunction() 
+      {   
+          var arr=['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'];
+          if((document.getElementById('fnum').value)!='')
+            document.getElementById('demo').innerHTML ='The day is '+ arr[document.getElementById('fnum').value%7];
+          else document.getElementById('demo').innerHTML=" Please enter a number: "
+      }
+  </script>
+  </body>
+</html>
