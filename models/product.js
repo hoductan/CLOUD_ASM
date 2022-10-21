@@ -7,7 +7,6 @@ const acc_query=
     values:[shopid]
 }
 query_data= await pg_conn.query(acc_query);
-console.log(query_data)
 return query_data.rows;
 }
 
