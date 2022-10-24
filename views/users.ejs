@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <style>
-    table, th, td {
-      border:1px solid black;
-    }
-    </style>
-  <body>
-    Welcome <%= name %><br>
-     
-  </body>
+
+<head>
+  <meta http-equiv="refresh" content="30">
+  <title>
+    <%= title %>
+  </title>
+</head>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>
+
+<body>
+  Welcome <%= name %><br>
+    <a href="/logout">Log out</a>
+    <%- shop %>
+      <%- table %>
+</body>
+
 </html>

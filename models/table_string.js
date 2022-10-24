@@ -23,10 +23,20 @@ async function table_string(shopid) {
     for (var i = 0; i < query_data.rows.length; i++) {
         str += `<tr>`
         for (const j in query_data.rows[i]) {
-            str += `<th>${query_data.rows[i][j]}</th>`
+            str += `<td>${query_data.rows[i][j]}</td>`
         }
+        
+       
+        if (shopid==0) str+=`<td> <form action="/edit/${query_data.rows[i].id}" method="post">
+         <input name ="button"type="submit" value="Update">
+       </form> </td>
+       <td> <form action="/delete/${query_data.rows[i].id}" method="post">
+         <input name ="button" type="submit" value="Delete">
+       </form> </td>
+        `
         str += `</tr>`
     }
+    str+=  `</table>`
     return str;
 }
 module.exports = table_string;

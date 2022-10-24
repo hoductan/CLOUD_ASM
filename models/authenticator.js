@@ -1,8 +1,8 @@
 var pg_conn=require("./pg_config")
 async function authen(user,pass){
-    var authenticated = false;
-    var role=''
-    var shopid;
+    let authenticated = false;
+    let role=''
+    let shopid;
 const acc_query=
 {
     name: 'fetch-user',

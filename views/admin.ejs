@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-<title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'>
-  </head>
-  <body>
-    <%- select_box %>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="refresh" content="30">
+  <!-- <link rel='stylesheet' href='/stylesheets/style.css'> -->
+</head>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>
+
+<body>
+  <a href="/logout">Log out</a>
+
+  <%- select_box %>
     <%- table %>
 
-  </body>
+</body>
+
 </html>

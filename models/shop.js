@@ -1,23 +1,23 @@
 var pg_conn=require("./pg_config")
-async function shop(user,pass){
-    
+async function shop(shopid){
+let str=''
 const acc_query=
-{
-    text:'SELECT * FROM users WHERE name=$1 AND passwd=$2',
-    values:[user,pass]
-}
-query_data= await pg_conn.query(acc_query);
-
-shopid=query_data.rows[0].shop;
-console.log(shopid)
-const acc_query2=
 {
     text:'SELECT * FROM shop WHERE id=$1',
     values:[shopid]
 }
-query_data= await pg_conn.query(acc_query2);
-
-return query_data.rows[0];
+query_data= await pg_conn.query(acc_query);
+str += `<table ><tr>`
+    for (var i = 0; i < query_data.fields.length; i++) {
+        str += `<th>${query_data.fields[i].name}</th>`
+    }
+    str += `</tr>`
+    str += `<tr>`
+for (const j in query_data.rows[0]) {
+    str += `<td>${query_data.rows[0][j]}</td>`
+}
+    str += `</tr>`
+return str;
 }
 
 module.exports=shop;
