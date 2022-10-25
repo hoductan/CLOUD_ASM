@@ -6,7 +6,6 @@ const select_box = require('../models/select_box');
 const admin_table_string = require('../models/admin_table_string');
 const deleteProduct = require('../models/deleteProduct');
 const updateProduct = require('../models/updateProduct');
-
 var router = express.Router();
 
 /* GET users listing. */
@@ -52,7 +51,7 @@ router.post('/functions', async function (req, res, next) {
   // console.log(req.params.function)
   let func = req.body.btt
   if (func == 'delete') await deleteProduct(req.body.id)
-  else  await updateProduct(func,req.body.id,req.body.name,req.body.price,req.body.quantity,req.body.shop,req.body.defid)
+  else await updateProduct(func, req.body.id, req.body.name, req.body.price, req.body.quantity, req.body.shop, req.body.defid)
   let select_box_string = await select_box(ss.shopid);
   let table_string2 = await admin_table_string(ss.shopid);
 

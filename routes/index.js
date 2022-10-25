@@ -4,19 +4,14 @@ const authen = require('../models/authenticator');
 const shop = require('../models/shop');
 const product = require('../models/product');
 const select_box = require('../models/select_box');
-
-
 const table_string = require('../models/table_string');
 const admin_table_string = require('../models/admin_table_string');
-
 const e = require('express');
 const editform = require('../models/editform');
 const deleteProduct = require('../models/deleteProduct');
-
-
-
 var router = express.Router();
 
+// hoductan
 /* GET home page. */
 
 router.get('/', function (req, res, next) {
