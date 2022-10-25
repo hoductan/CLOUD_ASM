@@ -16,11 +16,12 @@ async function admin_table_string(shop_id){
     var table_string=''
     if (shop_id!=0) table_string+=`
     <h2> Product of shop ${shop_id}</h2>
-        <table border="1">
+        <table class="table table-striped">
         <tr>`
     else table_string+=`
     <h2> Product of shop All shop</h2>
-        <table border="1">
+        <table  class="table table-striped">
+        <thead>
         <tr>`
     let num_fields=data.fields.length;
     let num_rows=data.rowCount;
@@ -32,19 +33,23 @@ async function admin_table_string(shop_id){
         list_fields.push(fields_name);
         table_string += `<th>${fields_name}</th>`
     }
-    table_string +=`<th>function</th></tr>`
+    table_string +=`<th>function</th>
+    </tr>  
+    </thead>
+    `
     // display all row
     for(let i=0;i<num_rows;i++)
     {
         table_string +=`<form action="/admin/functions" method="post">
+        <tbody>
         <tr>`;
         // display all cell
         for(let j=0; j<num_fields;j++)
         {
             let cell=data.rows[i][list_fields[j]]
             let fields_name=data.fields[j].name
-            table_string+=`<td> <input name=${fields_name} value=${cell}>
-            <input name=def${fields_name} hidden value=${cell}></td>`
+            table_string+=`<td> <input  name="${fields_name}" value="${cell}">
+            <input name="def${fields_name}" hidden value="${cell}"></td>`
         }
         table_string +=`
         <td style="display:flex">
@@ -67,9 +72,9 @@ async function admin_table_string(shop_id){
         <button name="btt" type="submit" value="insert">Insert</button>
         </td>
         </tr>
+        </tbody>
         </form>`
     table_string+=`</table>`;
-    
         return table_string;
 }
 

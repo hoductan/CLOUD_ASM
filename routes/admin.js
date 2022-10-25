@@ -30,6 +30,9 @@ router.get('/', async function (req, res, next) {
   else res.redirect('/login')
 
 });
+router.get('/select_shop', async function (req, res, next) {
+  res.redirect('/login')
+});
 router.post('/select_shop', async function (req, res, next) {
   ss = req.session
   ss.shopid = req.body.shop_name
@@ -42,11 +45,12 @@ router.post('/select_shop', async function (req, res, next) {
     table: table_string2
   });
 });
-
+router.get('/functions', async function (req, res, next) {
+  res.redirect('/login')
+});
 router.post('/functions', async function (req, res, next) {
   // console.log(req.params.function)
   let func = req.body.btt
-  console.log(req.body)
   if (func == 'delete') await deleteProduct(req.body.id)
   else  await updateProduct(func,req.body.id,req.body.name,req.body.price,req.body.quantity,req.body.shop,req.body.defid)
   let select_box_string = await select_box(ss.shopid);

@@ -7,7 +7,7 @@ const acc_query=
     values:[shopid]
 }
 query_data= await pg_conn.query(acc_query);
-str += `<table ><tr>`
+str += `<table class="center" ><tr>`
     for (var i = 0; i < query_data.fields.length; i++) {
         str += `<th>${query_data.fields[i].name}</th>`
     }

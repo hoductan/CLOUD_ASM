@@ -15,9 +15,9 @@ async function updateProduct(func, id, name, price, quantity, shop, defid) {
               }
     }
     else {
+        // console.log(name);
         let acc_query =
         {
-          
             text: `UPDATE product SET id=$1, name=$2, price=$3, quantity=$4, shop=$5 WHERE id=$6;`,
             values: [id, name, price, quantity, shop, defid]
         }
