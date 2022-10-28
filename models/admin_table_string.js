@@ -1,7 +1,10 @@
 var pg_conn=require("./pg_config");
 
 
-async function admin_table_string(shop_id){
+async function admin_table_string(shop_id,role){
+    let disable="";
+    // console.log("inside"+role);
+    if (role=="director") disable="disabled"
     if(shop_id==0){
         var product_query='SELECT * FROM product ORDER BY id'
     }
@@ -33,14 +36,14 @@ async function admin_table_string(shop_id){
         list_fields.push(fields_name);
         table_string += `<th>${fields_name}</th>`
     }
-    table_string +=`<th>function</th>
+    if (role=="shop") table_string +=`<th>function</th>
     </tr>  
     </thead>
     `
     // display all row
     for(let i=0;i<num_rows;i++)
     {
-        table_string +=`<form action="/admin/functions" method="post">
+        table_string +=`<form action="/users/functions" method="post">
         <tbody>
         <tr>`;
         // display all cell
@@ -48,24 +51,29 @@ async function admin_table_string(shop_id){
         {
             let cell=data.rows[i][list_fields[j]]
             let fields_name=data.fields[j].name
-            table_string+=`<td> <input  name="${fields_name}" value="${cell}">
+            table_string+=`<td> <input ${disable} name="${fields_name}" value="${cell}">
             <input name="def${fields_name}" hidden value="${cell}"></td>`
         }
-        table_string +=`
+        if (role=="shop")table_string +=`
         <td style="display:flex">
         <button name="btt" type="submit" value="delete">Delete</button>
         <button name="btt" type="submit" value="update">Update</button>
-        </td>
-        </tr>
+        </td>`
+
+        table_string += 
+        `</tr>
         </form>`
     }
     // thêm dòng insert
-    table_string +=`<form action="/admin/functions" method="post">
+    if(role=="shop")
+    {
+    table_string +=`<form action="/users/functions" method="post">
         <tr>`
     for(let j=0; j<num_fields;j++)
         {
             let fields_name=data.fields[j].name
-            table_string+=`<td><input name=${fields_name}></td>`
+            if (fields_name=="shop") table_string+=`<td><input name="${fields_name}"  value="${shop_id}"></td>`
+            else table_string+=`<td><input name=${fields_name}></td>`
         }
         table_string +=`
         <td>
@@ -75,6 +83,7 @@ async function admin_table_string(shop_id){
         </tbody>
         </form>`
     table_string+=`</table>`;
+    }
         return table_string;
 }
 

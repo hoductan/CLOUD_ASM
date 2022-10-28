@@ -10,7 +10,7 @@ const e = require('express');
 const editform = require('../models/editform');
 const deleteProduct = require('../models/deleteProduct');
 var router = express.Router();
-
+var ss;
 // hoductan
 /* GET home page. */
 
@@ -33,7 +33,7 @@ router.get('/logout', async function (req, res, next) {
 
   
 });
-var ss;
+
 router.post('/login', async function (req, res, next) {
   let [tempo,shopid,role] = await authen(req.body.username, req.body.password);
   if (tempo == true && role=='shop') {
